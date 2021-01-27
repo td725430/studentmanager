@@ -47,8 +47,8 @@
 <body>
 <div class="BigBox">
     <div class="center-layout">
-        <a href="addStudent.jsp">新增学生信息</a><br/>
-        <a href="/listStudentServlet">学生信息管理</a>
+        <a href="/studentmanager/addStudent.jsp">新增学生信息</a><br/>
+        <a href="/studentmanager/listStudentServlet">学生信息管理</a>
     </div>
 </div>
 </body>

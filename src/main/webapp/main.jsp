@@ -48,17 +48,17 @@
             <td style="width: 80px">${student.description}</td>
             <td style="width: 80px">${student.avgscore}</td>
             <td style="width: 80px">
-                <a href="/toUpdateStudentServlet?id=${student.id}">修改信息</a>
+                <a href="${pageContext.request.contextPath}/toUpdateStudentServlet?id=${student.id}">修改信息</a>
             </td>
             <td style="width: 80px">
-                <a href="javascript: if(window.confirm('是否删除？')){window.location.href='/deleteStudentServlet?id=${student.id}'}">删除信息</a>
+                <a href="javascript: if(window.confirm('是否删除？')){window.location.href='${pageContext.request.contextPath}/deleteStudentServlet?id=${student.id}'}">删除信息</a>
             </td>
         </tr>
     </c:forEach>
     <tr>
         <td colspan="7">
             <c:forEach items="${requestScope.pages}" var="page">
-                <a href="/listStudentServlet?page=${page}">${page}</a>
+                <a href="/studentmanager/listStudentServlet?page=${page}">${page}</a>
             </c:forEach>
         </td>
     </tr>

@@ -123,7 +123,7 @@
 <body>
 <div class="BigBox">
     <div class="center-layout">
-        <form action="/updateStudentServlet" method="post" id="form">
+        <form action="/studentmanager/updateStudentServlet" method="post" id="form">
         <table>
             <tbody>
             <tr>

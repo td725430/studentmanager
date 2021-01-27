@@ -118,7 +118,7 @@
 <body>
 <div class="BigBox">
     <div class="center-layout">
-        <form action="/addStudentServlet" method="post" id="form">
+        <form action="/studentmanager/addStudentServlet" method="post" id="form">
             <table>
                 <tbody>
                 <tr>
