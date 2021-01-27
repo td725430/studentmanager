@@ -95,14 +95,14 @@ public class ListStudentServlet extends HttpServlet {
             //当余数大于0时，说明数据不止10条
             if (remainder == 0){
                 studentsList = list.subList(begin,begin + 10);
-            }else if (pg == 1 && count <=10){
+            }else if (pg == 1 && count <= 10){
                 studentsList = list.subList(0,count);
             }else if (pg == 1 && count >10){
                 studentsList = list.subList(0,10);
             }else if (pg < size){
-                studentsList = list.subList(remainder,remainder + 10);
-            }else {
-                studentsList = list.subList(remainder,remainder + remainder);
+                studentsList = list.subList(begin,begin + 10);
+            }else if (pg == size){
+                studentsList = list.subList(begin,begin + remainder);
             }
         }
         request.setAttribute("pages",pages);

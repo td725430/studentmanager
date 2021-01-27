@@ -67,4 +67,29 @@ public class MyTest {
         Set<String> students = jedis.zrange("student", 0, -1);
         System.out.println(students.size());
     }
+    @Test
+    public void idExistTest() throws JsonProcessingException {
+        //用于将json数据装换成实体类对象
+        ObjectMapper mapper = new ObjectMapper();
+        //连接redis
+        Jedis jedis = RedisConnectionUtil.getJedis();
+        //从redis中获取所有学生数据
+        Set<String> students = jedis.zrange("student", 0, -1);
+        //学号
+        String id = "1004";
+        boolean flag = false;
+        A:for (String str : students) {
+            //将json数据装换成实体类对象
+            Student student = mapper.readValue(str, Student.class);
+            if (id.equals(student.getId()) == true){
+                flag = true;
+                break A;
+            }
+        }
+        if (flag){
+            System.out.println("1111");
+        }else {
+            System.out.println("0000");
+        }
+    }
 }

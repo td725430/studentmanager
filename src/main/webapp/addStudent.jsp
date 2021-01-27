@@ -74,8 +74,7 @@
             var reg=/^\d{1,40}$/;
             var flag=reg.test(id);
             var s_id=document.getElementById("s_id");
-            if(flag)
-            {
+            if(flag) {
                 s_id.innerHTML=" ";
             }else {
                 s_id.innerHTML="Id格式有误！";
@@ -86,8 +85,7 @@
             var reg=/^[\u4e00-\u9fa5a-zA-Z]{1,40}$/;
             var flag=reg.test(name);
             var s_name=document.getElementById("s_name");
-            if(flag)
-            {
+            if(flag) {
                 s_name.innerHTML=" ";
             }else {
                 s_name.innerHTML="姓名格式有误！";
@@ -98,8 +96,7 @@
             var reg=/^[u4E00-u9FA5]{0,255}|[a-zA-Z]{0,255}$/;
             var flag=reg.test(description);
             var s_description=document.getElementById("s_description");
-            if(flag)
-            {
+            if(flag) {
                 s_description.innerHTML=" ";
             }else {
                 s_description.innerHTML="备注格式有误！";
@@ -110,8 +107,7 @@
             var reg=/^[0-9]*$/;
             var flag=reg.test(avgscore);
             var s_avgscore=document.getElementById("s_avgscore");
-            if(flag)
-            {
+            if(flag) {
                 s_avgscore.innerHTML=" ";
             }else {
                 s_avgscore.innerHTML="平均分格式有误！";
