@@ -54,8 +54,12 @@ public class DeleteStudentServlet extends HttpServlet {
             }
         }
         if (flag){
+            //将学生对象转换成JSON字符串
             String jsonString = JSON.toJSONString(student);
+            //从Redis数据库中删除对应学生数据
             jedis.zrem("student",jsonString);
+            //关闭jedis
+            jedis.close();
             response.sendRedirect("/listStudentServlet");
         }
     }

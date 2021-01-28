@@ -88,23 +88,29 @@ public class ListStudentServlet extends HttpServlet {
         }else {
             //将从前端获取到的页数转换成整数
             Integer pg = Integer.parseInt(page);
-            //根据
+            //根据页数赋予开始显示数据位置
             int begin = (pg-1) * 10;
             //剩余数据
             int remainder = count % 10;
-            //当余数大于0时，说明数据不止10条
+            //当余数 == 0时，说明后面已没有数据
             if (remainder == 0){
                 studentsList = list.subList(begin,begin + 10);
+            //当页数为1，且Redis中数据总数小于10条时
             }else if (pg == 1 && count <= 10){
                 studentsList = list.subList(0,count);
+            //当页数为1，且Redis中数据总数大于10条时
             }else if (pg == 1 && count >10){
                 studentsList = list.subList(0,10);
+            //当前页数小于总页数，说明还有多余的数据未显示，还有下一页
             }else if (pg < size){
                 studentsList = list.subList(begin,begin + 10);
+            //当前页数等于总页数，此时为尾页
             }else if (pg == size){
                 studentsList = list.subList(begin,begin + remainder);
             }
         }
+        //关闭jedis
+        jedis.close();
         request.setAttribute("pages",pages);
         request.setAttribute("list",studentsList);
         request.getRequestDispatcher("/main.jsp").forward(request,response);

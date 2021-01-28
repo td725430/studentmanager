@@ -56,13 +56,19 @@ public class ToUpdateStudentServlet extends HttpServlet {
                 break A;
             }
         }
+        //关闭jedis
+        jedis.close();
         if (flag){
             //日期格式转换
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String format = sdf.format(student.getBirthday());
+            //将转换格式后的日期字符串数据转成Date类型赋值给birthday
             Date birthday = java.sql.Date.valueOf(format);
+            //重置学生的出生日期
             student.setBirthday(birthday);
+            //将学生数据添加到request域中，传递给前端
             request.setAttribute("student",student);
+            //请求跳转到修改页面
             request.getRequestDispatcher("/updateStudent.jsp").forward(request,response);
         }
     }

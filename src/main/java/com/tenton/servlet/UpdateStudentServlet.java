@@ -58,7 +58,7 @@ public class UpdateStudentServlet extends HttpServlet {
         A:for (String str : students) {
             //将json数据装换成实体类对象
             student = mapper.readValue(str, Student.class);
-            if (id.equals(student.getId())){
+            if (id.equals(student.getId()) == true){
                 flag = true;
                 break A;
             }
@@ -69,6 +69,8 @@ public class UpdateStudentServlet extends HttpServlet {
             student = new Student(id,name,birthday,description,avgscore);
             String jsonStr = JSON.toJSONString(student);
             jedis.zadd("student",avgscore,jsonStr);
+            //关闭jedis
+            jedis.close();
             response.sendRedirect("/listStudentServlet");
         }
     }
