@@ -69,7 +69,7 @@ public class UpdateStudentServlet extends HttpServlet {
             student = new Student(id,name,birthday,description,avgscore);
             String jsonStr = JSON.toJSONString(student);
             jedis.zadd("student",avgscore,jsonStr);
-            response.sendRedirect("/listStudentServlet");
+            response.sendRedirect("/studentmanager/listStudentServlet");
         }
     }
 

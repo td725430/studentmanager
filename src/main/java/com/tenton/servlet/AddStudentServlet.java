@@ -70,7 +70,7 @@ public class AddStudentServlet extends HttpServlet {
             //将学生实体转换为json字符串格式
             String jsonString = JSON.toJSONString(student);
             jedis.zadd("student", avgscore, jsonString);
-            response.sendRedirect("/listStudentServlet");
+            response.sendRedirect("/studentmanager/listStudentServlet");
         }
     }
 
