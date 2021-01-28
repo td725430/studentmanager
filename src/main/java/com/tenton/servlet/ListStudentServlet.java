@@ -109,6 +109,8 @@ public class ListStudentServlet extends HttpServlet {
                 studentsList = list.subList(begin,begin + remainder);
             }
         }
+        //关闭jedis
+        jedis.close();
         request.setAttribute("pages",pages);
         request.setAttribute("list",studentsList);
         request.getRequestDispatcher("/main.jsp").forward(request,response);

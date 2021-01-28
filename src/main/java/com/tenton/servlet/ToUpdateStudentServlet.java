@@ -56,6 +56,8 @@ public class ToUpdateStudentServlet extends HttpServlet {
                 break A;
             }
         }
+        //关闭jedis
+        jedis.close();
         if (flag){
             //日期格式转换
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
