@@ -40,19 +40,26 @@ public class AddStudentServlet extends HttpServlet {
         Set<String> students = jedis.zrange("student", 0, -1);
         //学号
         String id = request.getParameter("id");
+        Student student = null;
         //判断此学号是否已经存在
         boolean flag = false;
         A:for (String str : students) {
             //将json数据装换成实体类对象
-            Student student = mapper.readValue(str, Student.class);
+            student = mapper.readValue(str, Student.class);
             if (id.equals(student.getId()) == true){
                 flag = true;
                 break A;
             }
         }
         if (flag){
-            response.getWriter().write("此学号已有对应学生信息，2秒后自动跳转到主界面");
-            response.setHeader("Refresh", "2;URL=/listStudentServlet");
+            request.setAttribute("msg","该学号已存在,下面是对应信息");
+            //日期格式转换
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String format = sdf.format(student.getBirthday());
+            Date birthday = java.sql.Date.valueOf(format);
+            student.setBirthday(birthday);
+            request.setAttribute("studentInfo",student);
+            request.getRequestDispatcher("/studentInformation.jsp").forward(request,response);
         }else {
             //姓名
             String name = request.getParameter("name");
@@ -66,7 +73,7 @@ public class AddStudentServlet extends HttpServlet {
             //平均分
             int avgscore = Integer.parseInt(request.getParameter("avgscore"));
             //创建一个学生实体，封装从前端接收到的数据
-            Student student = new Student(id, name, birthday, description, avgscore);
+            student = new Student(id, name, birthday, description, avgscore);
             //将学生实体转换为json字符串格式
             String jsonString = JSON.toJSONString(student);
             jedis.zadd("student", avgscore, jsonString);

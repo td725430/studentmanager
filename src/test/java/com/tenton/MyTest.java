@@ -136,4 +136,15 @@ public class MyTest {
         //关闭jedis
         jedis.close();
     }
+    //字符串模糊比较
+    @Test
+    public void testStrContains(){
+        String str1 = "东";
+        String str2 = "东西";
+        if (str2.contains(str1)){
+            System.out.println("222");
+        }else {
+            System.out.println("23");
+        }
+    }
 }

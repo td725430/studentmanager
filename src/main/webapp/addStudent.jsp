@@ -168,6 +168,9 @@
                     <td colspan="10">
                         <input style="width: 100px" type="submit" value="提&nbsp;&nbsp;&nbsp;&nbsp;交"/>
                     </td>
+                    <td colspan="10">
+                        <a href="/studentmanager/listStudentServlet">返回主页</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

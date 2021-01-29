@@ -26,12 +26,15 @@
 <table class="border_distance" width="800" align="center"  bgcolor="white">
     <thead>
     <tr align="center">
-        <td colspan="10">
+        <td colspan="5">
             <a href="addStudent.jsp">添加学生信息</a>
+        </td>
+        <td colspan="5">
+            <a href="/studentmanager/listStudentServlet">返回主页</a>
         </td>
     </tr>
     <tr  align="center">
-        <form action="/studentmanager/selectStudentServlet" method="post">
+        <form action="/studentmanager/selectStudentServlet" method="get">
             <td>
                 <input type="text" name="name"/>
             </td>
@@ -50,7 +53,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${requestScope.list}" var="student">
+    <c:forEach items="${requestScope.listName}" var="student">
         <tr>
             <td style="width: 30px">${student.id}</td>
             <td style="width: 60px">${student.name}</td>
@@ -67,8 +70,8 @@
     </c:forEach>
     <tr>
         <td colspan="7">
-            <c:forEach items="${requestScope.pages}" var="page">
-                <a href="/studentmanager/listStudentServlet?page=${page}">${page}</a>
+            <c:forEach items="${requestScope.pageNum}" var="page">
+                <a href="/studentmanager/selectStudentServlet?page=${page}">${page}</a>
             </c:forEach>
         </td>
     </tr>
